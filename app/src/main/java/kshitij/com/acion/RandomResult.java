@@ -6,6 +6,8 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import java.util.concurrent.ThreadLocalRandom;
 
@@ -29,9 +31,21 @@ public class RandomResult extends AppCompatActivity {
         Intent intent = new Intent(RandomResult.this, RecipeDisplay.class);
         Bundle activityBundle = new Bundle();//Bundle used to send info across activities
         activityBundle.putString("key_dishname", mCursor.getString(0));
-        activityBundle.putString("title", "Todays' Special");
         intent.putExtras(activityBundle);
         startActivity(intent);
         finish();
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_display, menu);
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        Intent intent = new Intent(RandomResult.this, AboutUs.class);
+        startActivity(intent);
+        return true;
     }
 }
